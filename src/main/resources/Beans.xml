@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--breeds-->
+    <bean id="ahaltekinskaia" class="bean.Breed">
+        <property name="id" value="1"/>
+        <property name="name" value="Ahaltekinskaia"/>
+    </bean>
+
+    <!--horses-->
+    <bean id="horseGrom" class="bean.Horse">
+        <property name="name" value="Grom"/>
+        <property name="age" value="3"/>
+        <property name="color" value="white"/>
+        <property name="breed" ref="ahaltekinskaia"/>
+    </bean>
+
+    <bean id="horseFlash" class="bean.Horse">
+        <property name="name" value="Flash"/>
+        <property name="age" value="2"/>
+        <property name="color" value="black"/>
+        <property name="breed" ref="ahaltekinskaia"/>
+    </bean>
+
+    <bean id="horseLazy" class="bean.Horse">
+        <property name="name" value="Lazy"/>
+        <property name="age" value="5"/>
+        <property name="color" value="gray"/>
+        <property name="breed" ref="ahaltekinskaia"/>
+    </bean>
+
+    <!--riders-->
+    <bean id="riderPeter" class="bean.Rider">
+        <property name="name" value="Peter"/>
+        <property name="age" value="25"/>
+    </bean>
+
+    <bean id="riderVasia" class="bean.Rider">
+        <property name="name" value="Vasia"/>
+        <property name="age" value="30"/>
+    </bean>
+
+    <bean id="riderKostia" class="bean.Rider">
+        <property name="name" value="Kostia"/>
+        <property name="age" value="20"/>
+    </bean>
+
+    <!--teams-->
+    <bean id="PeterTeam" class="bean.HorseService">
+        <property name="horse" ref="horseGrom"/>
+        <property name="rider" ref="riderPeter"/>
+    </bean>
+
+    <bean id="VasiaTeam" class="bean.HorseService">
+        <property name="horse" ref="horseFlash"/>
+        <property name="rider" ref="riderVasia"/>
+    </bean>
+
+    <bean id="KostiaTeam" class="bean.HorseService">
+        <property name="horse" ref="horseLazy"/>
+        <property name="rider" ref="riderKostia"/>
+    </bean>
+
+    <!--races-->
+    <bean id="race" class="bean.Race">
+        <property name="horseServices">
+            <list>
+                <ref bean="PeterTeam"/>
+                <ref bean="VasiaTeam"/>
+                <ref bean="KostiaTeam"/>
+            </list>
+        </property>
+        <property name="distance" value="100.5"/>
+    </bean>
+</beans>
